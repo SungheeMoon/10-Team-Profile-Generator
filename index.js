@@ -154,8 +154,73 @@ const buildManagerObject = () => {
 
 addMoreEmployee();
 
+const generateTeamCards = (team) => {
+  let result = null;
 
+  result = team.map((mem) => {
+    switch (mem.getRole()) {
+      case "Engineer":
+        return `
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${mem.getName()}</h5>
+                            <p class="card-text">ID: ${mem.getId()}</p>
+                            <p class="card-text">Email: <a href="mailto:${mem.getEmail()}">${mem.getEmail()}</a></p>
+                            <p class="card-text">Github: <a href="https://github.com/${mem.getGithub()}">${mem.getGithub()}</a></p>
+                        </div>
+                    </div>
+                `;
+      case "Intern":
+        return `
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${mem.getName()}</h5>
+                            <p class="card-text">ID: ${mem.getId()}</p>
+                            <p class="card-text">Email: <a href="mailto:${mem.getEmail()}">${mem.getEmail()}</a></p>
+                            <p class="card-text">School: ${mem.getSchool()}</p>
+                        </div>
+                    </div>
+                `;
+      case "Manager":
+        return `
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${mem.getName()}</h5>
+                            <p class="card-text">ID: ${mem.getId()}</p>
+                            <p class="card-text">Email: <a href="mailto:${mem.getEmail()}">${mem.getEmail()}</a></p>
+                            <p class="card-text">Office Manager: ${mem.getOfficeNumber()}</p>
+                        </div>
+                    </div>
+                `;
+      default:
+        break;
+    }
+  });
+
+  return result.join("");
+};
+
+const generateTeamHTML = () => {
+    return `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+            <title>Team Generator</title>
+        </head>
+        <body>
+            ${generateTeamCards(teamArray)}
+        </body>
+        </html>
+    `;
+}
 
 const teamBuild = () => {
-    fs.writeFileSync(path.join(__dirname,"team.html"), generateTeamHTML());
+  fs.writeFileSync(
+    path.join(__dirname, "team.html"),
+    generateTeamHTML()
+  );
 };
