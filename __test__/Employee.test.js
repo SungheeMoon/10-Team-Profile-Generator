@@ -1,4 +1,3 @@
-const { expect } = require("@jest/globals");
 const Employee = require("../classes/Employee");
 
 it("test employee class object", () => {
