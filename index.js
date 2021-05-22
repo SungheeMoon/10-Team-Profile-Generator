@@ -154,3 +154,8 @@ const buildManagerObject = () => {
 
 addMoreEmployee();
 
+
+
+const teamBuild = () => {
+    fs.writeFileSync(path.join(__dirname,"team.html"), generateTeamHTML());
+};
